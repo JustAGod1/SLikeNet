@@ -190,7 +190,8 @@ bool ReadyEvent::AddToWaitList(int eventId, RakNetGUID guid)
 		UpdateReadyStatus(eventIndex);
 	return numAdded>0;
 }
-bool ReadyEvent::RemoveFromWaitList(int eventId, RakNetGUID guid)
+RAK_DLL_EXPORT 
+bool __cdecl ReadyEvent::RemoveFromWaitList(int eventId, RakNetGUID guid)
 {
 	bool eventExists;
 	unsigned eventIndex = readyEventNodeList.GetIndexFromKey(eventId, &eventExists);

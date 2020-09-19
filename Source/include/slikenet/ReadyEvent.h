@@ -65,7 +65,7 @@ enum ReadyEventSystemStatus
 /// The user will get ID_READY_EVENT_ALL_SET when all systems are done waiting for all other systems, in which case the event is considered complete, and no longer tracked.<BR>
 /// \sa FullyConnectedMesh2
 /// \ingroup READY_EVENT_GROUP
-class ReadyEvent : public PluginInterface2
+class RAK_DLL_EXPORT ReadyEvent : public PluginInterface2
 {
 public:
 	// GetInstance() and DestroyInstance(instance*)
