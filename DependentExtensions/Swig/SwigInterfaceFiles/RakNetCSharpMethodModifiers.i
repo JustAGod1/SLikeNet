@@ -14,80 +14,80 @@
 //and such. Many times this is used to hide the helper functions from the user
 
 //BitStream
-%csmethodmodifiers SLNet::BitStream::CSharpStringReader "private"
-%csmethodmodifiers SLNet::BitStream::CSharpStringReaderCompressedDelta "private"
-%csmethodmodifiers SLNet::BitStream::CSharpStringReaderCompressed "private"
-%csmethodmodifiers SLNet::BitStream::CSharpStringReaderDelta "private"
-%csmethodmodifiers SLNet::BitStream::CSharpByteReader(unsigned char* inOutByteArray,unsigned int numberOfBytes) "private"
-%csmethodmodifiers SLNet::BitStream::CSharpCopyDataHelper(unsigned char* inOutByteArray) "private"
-%csmethodmodifiers SLNet::BitStream::CSharpPrintHexHelper(char * inString) "private"
-%csmethodmodifiers SLNet::BitStream::CSharpPrintBitsHelper(char * inString) "private"
+%javamethodmodifiers SLNet::BitStream::CSharpStringReader "private"
+%javamethodmodifiers SLNet::BitStream::CSharpStringReaderCompressedDelta "private"
+%javamethodmodifiers SLNet::BitStream::CSharpStringReaderCompressed "private"
+%javamethodmodifiers SLNet::BitStream::CSharpStringReaderDelta "private"
+%javamethodmodifiers SLNet::BitStream::CSharpByteReader(unsigned char* inOutByteArray,unsigned int numberOfBytes) "private"
+%javamethodmodifiers SLNet::BitStream::CSharpCopyDataHelper(unsigned char* inOutByteArray) "private"
+%javamethodmodifiers SLNet::BitStream::CSharpPrintHexHelper(char * inString) "private"
+%javamethodmodifiers SLNet::BitStream::CSharpPrintBitsHelper(char * inString) "private"
 
 //DataStructures::Table
-%csmethodmodifiers DataStructures::Table::GetListHeadHelper "private"
-%csmethodmodifiers DataStructures::Table::SortTableHelper "private"
-%csmethodmodifiers DataStructures::Table::GetCellValueByIndexHelper "private"
-%csmethodmodifiers DataStructures::Table::QueryTableHelper "private"
-%csmethodmodifiers DataStructures::Table::ColumnIndexHelper "private"
-%csmethodmodifiers Cell::GetHelper "private"
-%csmethodmodifiers Cell::ColumnIndexHelper "private"
+%javamethodmodifiers DataStructures::Table::GetListHeadHelper "private"
+%javamethodmodifiers DataStructures::Table::SortTableHelper "private"
+%javamethodmodifiers DataStructures::Table::GetCellValueByIndexHelper "private"
+%javamethodmodifiers DataStructures::Table::QueryTableHelper "private"
+%javamethodmodifiers DataStructures::Table::ColumnIndexHelper "private"
+%javamethodmodifiers Cell::GetHelper "private"
+%javamethodmodifiers Cell::ColumnIndexHelper "private"
 
 //Rakpeer
 %define RAKPEERANDINTERFACESETPRIVATE(theMacroInputFunction)
-%csmethodmodifiers SLNet::RakPeer::theMacroInputFunction "private"
-%csmethodmodifiers SLNet::RakPeerInterface::theMacroInputFunction "private"
+%javamethodmodifiers SLNet::RakPeer::theMacroInputFunction "private"
+%javamethodmodifiers SLNet::RakPeerInterface::theMacroInputFunction "private"
 %enddef
 
 RAKPEERANDINTERFACESETPRIVATE(CSharpGetIncomingPasswordHelper( const char* passwordData, int *passwordDataLength  ))
 RAKPEERANDINTERFACESETPRIVATE(CSharpGetOfflinePingResponseHelper( unsigned char *inOutByteArray, unsigned int *outLength ))
 RAKPEERANDINTERFACESETPRIVATE(GetBandwidth);
 
-%csmethodmodifiers SLNet::NetworkIDManager::GET_BASE_OBJECT_FROM_ID "protected"
+%javamethodmodifiers SLNet::NetworkIDManager::GET_BASE_OBJECT_FROM_ID "protected"
 
-%csmethodmodifiers SLNet::NetworkIDObject::SetNetworkIDManager "protected"
+%javamethodmodifiers SLNet::NetworkIDObject::SetNetworkIDManager "protected"
 
-%csmethodmodifiers  DataStructures::ByteQueue::PeekContiguousBytesHelper "private"
+%javamethodmodifiers  DataStructures::ByteQueue::PeekContiguousBytesHelper "private"
 
-%csmethodmodifiers SLNet::RakNetGUID::ToString() const "public override"
+%javamethodmodifiers SLNet::RakNetGUID::ToString() const "public override"
 
-%csmethodmodifiers  SLNet::StatisticsToStringHelper "private"
+%javamethodmodifiers  SLNet::StatisticsToStringHelper "private"
 
-%csmethodmodifiers SLNet::PacketLogger::FormatLineHelper "private"
+%javamethodmodifiers SLNet::PacketLogger::FormatLineHelper "private"
 
-%csmethodmodifiers DataStructures::List <unsigned short>::GetHelper "private"
-%csmethodmodifiers DataStructures::List <unsigned short>::PopHelper "private"
+%javamethodmodifiers DataStructures::List <unsigned short>::GetHelper "private"
+%javamethodmodifiers DataStructures::List <unsigned short>::PopHelper "private"
 
 //FileProgressStruct
-%csmethodmodifiers FileProgressStruct::SetFirstDataChunk "private"
-%csmethodmodifiers FileProgressStruct::SetIriDataChunk "private"
-%csmethodmodifiers OnFileStruct::SetFileData "private"
+%javamethodmodifiers FileProgressStruct::SetFirstDataChunk "private"
+%javamethodmodifiers FileProgressStruct::SetIriDataChunk "private"
+%javamethodmodifiers OnFileStruct::SetFileData "private"
 
 //ConnectionGraph2
-%csmethodmodifiers SLNet::ConnectionGraph2::GetConnectionListForRemoteSystemHelper "private"
-%csmethodmodifiers SLNet::ConnectionGraph2::GetParticipantListHelper "private"
+%javamethodmodifiers SLNet::ConnectionGraph2::GetConnectionListForRemoteSystemHelper "private"
+%javamethodmodifiers SLNet::ConnectionGraph2::GetParticipantListHelper "private"
 
 #ifdef SWIG_ADDITIONAL_AUTOPATCHER
 	//AutopatcherServer
-	%csmethodmodifiers SLNet::AutopatcherServer::StartThreadsHelper "private"
+	%javamethodmodifiers SLNet::AutopatcherServer::StartThreadsHelper "private"
 
-	%csmethodmodifiers  SLNet::CreatePatchHelper "private"
+	%javamethodmodifiers  SLNet::CreatePatchHelper "private"
 #endif
 
 #ifdef SWIG_ADDITIONAL_AUTOPATCHER
-	%csmethodmodifiers CompressorBase::GetOutputHelper "private";
+	%javamethodmodifiers CompressorBase::GetOutputHelper "private";
 #endif
 
 //Operators
-%csmethodmodifiers operator > "private"
-%csmethodmodifiers operator < "private"
-%csmethodmodifiers operator != "private"
-%csmethodmodifiers operator [] "private"
-%csmethodmodifiers operator >= "private"
-%csmethodmodifiers operator <= "private"
-%csmethodmodifiers operator / "private"
-%csmethodmodifiers operator * "private"
-%csmethodmodifiers operator -- "private"
-%csmethodmodifiers operator ++ "private"
-%csmethodmodifiers operator - "private"
-%csmethodmodifiers operator + "private"
-%csmethodmodifiers operator+(const SLNet::RakString &lhs, const SLNet::RakString &rhs) "public" //The global SLikeNet operator should be public
+%javamethodmodifiers operator > "private"
+%javamethodmodifiers operator < "private"
+%javamethodmodifiers operator != "private"
+%javamethodmodifiers operator [] "private"
+%javamethodmodifiers operator >= "private"
+%javamethodmodifiers operator <= "private"
+%javamethodmodifiers operator / "private"
+%javamethodmodifiers operator * "private"
+%javamethodmodifiers operator -- "private"
+%javamethodmodifiers operator ++ "private"
+%javamethodmodifiers operator - "private"
+%javamethodmodifiers operator + "private"
+%javamethodmodifiers operator+(const SLNet::RakString &lhs, const SLNet::RakString &rhs) "public" //The global SLikeNet operator should be public

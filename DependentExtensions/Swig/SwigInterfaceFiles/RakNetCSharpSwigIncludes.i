@@ -51,7 +51,6 @@
 %include "FullyConnectedMesh2.h"
 %include "ReadyEvent.h"
 //%include "TeamBalancer.h"
-%include "TeamManager.h"
 %include "NatPunchthroughServer.h"
 %include "UDPForwarder.h"
 %include "UDPProxyServer.h"

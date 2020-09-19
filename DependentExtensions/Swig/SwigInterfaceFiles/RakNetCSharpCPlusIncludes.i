@@ -69,7 +69,6 @@ typedef unsigned int SOCKET;
 #include "slikenet/FullyConnectedMesh2.h"
 #include "slikenet/ReadyEvent.h"
 //#include "slikenet/TeamBalancer.h"
-#include "slikenet/TeamManager.h"
 #include "slikenet/NatPunchthroughServer.h"
 #include "slikenet/UDPForwarder.h"
 #include "slikenet/UDPProxyServer.h"

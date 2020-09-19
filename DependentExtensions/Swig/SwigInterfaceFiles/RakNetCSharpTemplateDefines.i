@@ -153,7 +153,7 @@
 %template(ReadCompressedDelta) SLNet::BitStream::ReadCompressedDelta <uint24_t>;
 
 %define ADD_LIST_TYPE(CTYPE,CSTYPE,RENAME_TYPE)
-%typemap(cscode) DataStructures::List<CTYPE>
+%typemap(javacode) DataStructures::List<CTYPE>
 %{
     public CSTYPE this[int index]  
     {  
@@ -186,7 +186,7 @@ ADD_LIST_TYPE(SortQuery,SortQuery,RakNetListSortQuery);
 
 //Can't use the macro because it won't include the space then nested templates won't work
 /*
-%typemap(cscode) DataStructures::List<RakNetSmartPtr<RakNetSocket> >
+%typemap(javacode) DataStructures::List<RakNetSmartPtr<RakNetSocket> >
 %{
     public RakNetSmartPtrRakNetSocket this[int index]  
     {  
@@ -208,19 +208,9 @@ ADD_LIST_TYPE(SortQuery,SortQuery,RakNetListSortQuery);
 %ignore DataStructures::List<CTYPE>::Get;
 %ignore DataStructures::List<CTYPE>::Pop;
 
-%typemap(cscode) DataStructures::List<CTYPE>
+%typemap(javacode) DataStructures::List<CTYPE>
 %{
-    public CSTYPE this[int index]  
-    {  
-        get   
-        {
-            return Get((uint)index); // use indexto retrieve and return another value.    
-        }  
-        set   
-        {
-            Replace(value, value, (uint)index, "Not used", 0);// use index and value to set the value somewhere.   
-        }  
-    }
+   
 
 
     public CSTYPE Get(uint position) 
@@ -260,13 +250,13 @@ ADD_POINTER_LIST_TYPE(Cell *,Cell,RakNetListCellPointer)
 %define ADD_PRIMITIVE_LIST_TYPE(CTYPE,CSTYPE,RENAME_TYPE,SWIG_TYPE,POINTER_NAME)
 %pointer_class(CTYPE, POINTER_NAME)
 
-%csmethodmodifiers DataStructures::List <CTYPE>::Get "private"
-%csmethodmodifiers DataStructures::List <CTYPE>::Pop "private"
+%javamethodmodifiers DataStructures::List <CTYPE>::Get "private"
+%javamethodmodifiers DataStructures::List <CTYPE>::Pop "private"
 
 %rename(GetHelper) DataStructures::List <CTYPE>::Get;
 %rename(PopHelper) DataStructures::List <CTYPE>::Pop;
 
-%typemap(cscode) DataStructures::List <CTYPE>
+%typemap(javacode) DataStructures::List <CTYPE>
 %{
   public CSTYPE Get(uint position) {
     SWIG_TYPE ret = GetHelper(position);
@@ -293,8 +283,8 @@ ADD_POINTER_LIST_TYPE(Cell *,Cell,RakNetListCellPointer)
 %template(RENAME_TYPE) DataStructures::List <CTYPE>;
 %enddef
 
-ADD_PRIMITIVE_LIST_TYPE(unsigned short,ushort,RakNetListUnsignedShort,SWIGTYPE_p_unsigned_short,UnsignedShortPointer)
-ADD_PRIMITIVE_LIST_TYPE(unsigned,uint,RakNetListUnsignedInt,SWIGTYPE_p_unsigned_int,UnsignedIntPointer)
+//ADD_PRIMITIVE_LIST_TYPE(unsigned short,ushort,RakNetListUnsignedShort,SWIGTYPE_p_unsigned_short,UnsignedShortPointer)
+//ADD_PRIMITIVE_LIST_TYPE(unsigned,uint,RakNetListUnsignedInt,SWIGTYPE_p_unsigned_int,UnsignedIntPointer)
 
 %template(RakNetPageRow) DataStructures::Page<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>;
 
@@ -302,12 +292,12 @@ ADD_PRIMITIVE_LIST_TYPE(unsigned,uint,RakNetListUnsignedInt,SWIGTYPE_p_unsigned_
 %ignore DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>::Delete;
 %ignore DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>::Get;
 
-%csmethodmodifiers DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>::DeleteHelper "private";
-%csmethodmodifiers DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>::GetHelper "private";
+%javamethodmodifiers DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>::DeleteHelper "private";
+%javamethodmodifiers DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>::GetHelper "private";
 
 %template(RakNetBPlusTreeRow) DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>;
 
-%typemap(cscode) DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>
+%typemap(javacode) DataStructures::BPlusTree<unsigned, DataStructures::Table::Row*, _TABLE_BPLUS_TREE_ORDER>
 %{
 	public bool Get(uint key, ref Row arg1) 
 	{
@@ -334,7 +324,7 @@ ADD_PRIMITIVE_LIST_TYPE(unsigned,uint,RakNetListUnsignedInt,SWIGTYPE_p_unsigned_
 %}
 
 %define ADD_STANDARD_MULTILIST_TYPE(CTYPE,CSTYPE,RENAME_TYPE)
-%typemap(cscode) DataStructures::Multilist <ML_STACK,CTYPE,CTYPE,DefaultIndexType>
+%typemap(javacode) DataStructures::Multilist <ML_STACK,CTYPE,CTYPE,DefaultIndexType>
 %{
     public CSTYPE this[int index]  
     {  
