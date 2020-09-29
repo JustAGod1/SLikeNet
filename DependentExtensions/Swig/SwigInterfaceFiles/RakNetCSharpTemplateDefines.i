@@ -155,17 +155,7 @@
 %define ADD_LIST_TYPE(CTYPE,CSTYPE,RENAME_TYPE)
 %typemap(javacode) DataStructures::List<CTYPE>
 %{
-    public CSTYPE this[int index]  
-    {  
-        get   
-        {
-            return Get((uint)index); // use indexto retrieve and return another value.    
-        }  
-        set   
-        {
-            Replace(value, value, (uint)index, "Not used", 0);// use index and value to set the value somewhere.   
-        }  
-    } 
+   
 %}
 
 %template(RENAME_TYPE) DataStructures::List <CTYPE>;
@@ -188,17 +178,7 @@ ADD_LIST_TYPE(SortQuery,SortQuery,RakNetListSortQuery);
 /*
 %typemap(javacode) DataStructures::List<RakNetSmartPtr<RakNetSocket> >
 %{
-    public RakNetSmartPtrRakNetSocket this[int index]  
-    {  
-        get   
-        {
-            return Get((uint)index); // use indexto retrieve and return another value.    
-        }  
-        set   
-        {
-            Replace(value, value, (uint)index, "Not used", 0);// use index and value to set the value somewhere.   
-        }  
-    } 
+   
 %}
 
 %template(RakNetListRakNetSmartPtrRakNetSocket) DataStructures::List <RakNetSmartPtr<RakNetSocket> >;
@@ -267,17 +247,7 @@ ADD_POINTER_LIST_TYPE(Cell *,Cell,RakNetListCellPointer)
     SWIG_TYPE ret = PopHelper();
     return POINTER_NAME.frompointer(ret).value();
   }
-    public CSTYPE this[int index]  
-    {  
-        get   
-        {
-            return Get((uint)index); // use indexto retrieve and return another value.    
-        }  
-        set   
-        {
-            Replace(value, value, (uint)index, "Not used", 0);// use index and value to set the value somewhere.   
-        }  
-    } 
+    
 %}
 
 %template(RENAME_TYPE) DataStructures::List <CTYPE>;
@@ -326,18 +296,7 @@ ADD_POINTER_LIST_TYPE(Cell *,Cell,RakNetListCellPointer)
 %define ADD_STANDARD_MULTILIST_TYPE(CTYPE,CSTYPE,RENAME_TYPE)
 %typemap(javacode) DataStructures::Multilist <ML_STACK,CTYPE,CTYPE,DefaultIndexType>
 %{
-    public CSTYPE this[int index]  
-    {  
-        get   
-        {
-            return OpArray((uint)index); // use indexto retrieve and return another value.    
-        }  
-        set   
-        {
-            RemoveAtIndex((uint)index);
-            InsertAtIndex(value,(uint)index);
-	}  
-    } 
+   
 %}
 
 %template(RENAME_TYPE) DataStructures::Multilist <ML_STACK,CTYPE,CTYPE,DefaultIndexType>;

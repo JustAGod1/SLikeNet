@@ -283,9 +283,6 @@
     <ClCompile Include="..\..\..\Source\src\TeamBalancer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\src\TeamManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Source\src\TelnetTransport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

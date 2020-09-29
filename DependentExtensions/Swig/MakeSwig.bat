@@ -33,8 +33,8 @@ set dependentExtensionDir=%rootDir%\DependentExtensions
 set swigDefines=
 set swigIncludes=-I"%sourceDir%\include\slikenet" -I"SwigInterfaceFiles"
 set namespace=SLNet
-set outputDirectory=..\..\bindings\csharp\interfaces
-set outputWrapperFilename=..\..\bindings\csharp\wrapper\slikenet_wrapper.cpp
+set outputDirectory=..\..\bindings\java\interfaces
+set outputWrapperFilename=..\..\bindings\java\wrapper\slikenet_wrapper.cpp
 
 REM check if we have a dependent extension specified in the 3rd argument
 set dependentExtension=%3
@@ -77,8 +77,8 @@ REM adjust variables for RakNet compatibility mode
 if %rakNetCompatibilityMode% == 1 (
 	set namespace=RakNet
 	set swigDefines=%swigDefines% -DRAKNET_COMPATIBILITY
-	set outputDirectory=..\..\bindings\raknet_backwards_compatibility\csharp\interfaces
-	set outputWrapperFilename=..\..\bindings\raknet_backwards_compatibility\csharp\wrapper\RakNet_wrap.cxx
+	set outputDirectory=..\..\bindings\raknet_backwards_compatibility\java\interfaces
+	set outputWrapperFilename=..\..\bindings\raknet_backwards_compatibility\java\wrapper\RakNet_wrap.cxx
 )
 
 echo Performing SWIG build
@@ -87,7 +87,7 @@ REM clear output folder
 del /F /Q %outputDirectory%\*
 
 REM run SWIG
-%swigCommand% -c++ -csharp -namespace %namespace% %swigIncludes% %swigDefines% -outdir %outputDirectory% -o %outputWrapperFilename% SwigInterfaceFiles\RakNet.i
+%swigCommand% -c++ -java -package ru.justagod.slikenet %swigIncludes% %swigDefines% -outdir %outputDirectory% -o %outputWrapperFilename% SwigInterfaceFiles\RakNet.i
 if errorlevel 1 goto swigError
 
 echo SWIG build complete
