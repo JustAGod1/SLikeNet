@@ -22,8 +22,22 @@
 %module(directors="1") SLikeNet
 #endif
 
+
+
 %include "various.i"
+%include "typemaps.i"
 %include "arrays_java.i"
+
+namespace SLNet {
+
+	class RakPeerInterface;
+	%apply char *BYTE { const char *data };
+	
+	//%typemap(in) (const char *data, const int length) {
+	//	$1 = (char *) JCALL2(GetByteArrayElements, jenv, $input, 0); 
+	//	$2 = (int) JCALL1(GetArrayLength, jenv, $input); 
+	//}
+}
 
 %include "JavaTypeMaps.i"
 %include "RakNetCSharpCPlusIncludes.i"
