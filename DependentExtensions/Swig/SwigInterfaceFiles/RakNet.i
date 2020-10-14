@@ -27,11 +27,14 @@
 %include "various.i"
 %include "typemaps.i"
 %include "arrays_java.i"
-
+//%include "Utils.i"
+typedef unsigned int       uint32_t;
 namespace SLNet {
 
 	class RakPeerInterface;
-	%apply char *BYTE { const char *data };
+		%apply char *BYTE { const char *data };
+		%apply uint32_t { int };
+	
 	
 	//%typemap(in) (const char *data, const int length) {
 	//	$1 = (char *) JCALL2(GetByteArrayElements, jenv, $input, 0); 
@@ -44,3 +47,4 @@ namespace SLNet {
 %include "RakNetCSharpIgnores.i"
 %include "RakNetCSharpSwigIncludes.i"
 %include "RakNetCSharpTemplateDefines.i"
+
