@@ -16,6 +16,7 @@
 //These files are parsed by Swig
 %include "defines.h"
 %include "Export.h"
+%include "NativeFeatureIncludesOverrides.h"
 %include "NativeFeatureIncludes.h"
 //%include "smartptr.h"
 %include "MessageIdentifiers.h"

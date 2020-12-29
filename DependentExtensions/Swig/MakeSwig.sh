@@ -38,8 +38,8 @@ GCC_ADDITIONAL_INCLUDES=
 GCC_ADDITIONAL_LIBS=
 GCC_DEFINES=
 NAMESPACE=SLNet
-OUTPUT_DIR=../../bindings/csharp/interfaces
-OUTPUT_WRAPPER_FILENAME=../../bindings/csharp/wrapper/slikenet_wrapper.cpp
+OUTPUT_DIR=../../bindings/java/interfaces
+OUTPUT_WRAPPER_FILENAME=../../bindings/java/wrapper/slikenet_wrapper.cpp
 SO_NAME=SLikeNet
 
 # check if we have a dependent extension specified in the 2nd argument
@@ -106,8 +106,8 @@ if [ $RAKNET_COMPATIBILITY_MODE == 1 ]; then
 	NAMESPACE=RakNet
 	SWIG_DEFINES="$SWIG_DEFINES -DRAKNET_COMPATIBILITY"
 	GCC_DEFINES=-DRAKNET_COMPATIBILITY=1
-	OUTPUT_DIR=../../bindings/raknet_backwards_compatibility/csharp/interfaces
-	OUTPUT_WRAPPER_FILENAME=../../bindings/raknet_backwards_compatibility/csharp/wrapper/RakNet_wrap.cxx
+	OUTPUT_DIR=../../bindings/raknet_backwards_compatibility/java/interfaces
+	OUTPUT_WRAPPER_FILENAME=../../bindings/raknet_backwards_compatibility/java/wrapper/RakNet_wrap.cxx
 	SO_NAME=RakNet
 fi
 
@@ -115,7 +115,7 @@ echo "Generating C# wrapper/interface files"
 # clear output folder
 rm -f $OUTPUT_DIR/*
 
-swig -c++ -csharp -namespace $NAMESPACE $SWIG_INCLUDES $SWIG_ADDITIONAL_INCLUDES $SWIG_DEFINES -outdir $OUTPUT_DIR -o $OUTPUT_WRAPPER_FILENAME SwigInterfaceFiles/RakNet.i
+swig -c++ -java -package ru.justagod.slikenet $SWIG_INCLUDES $SWIG_ADDITIONAL_INCLUDES $SWIG_DEFINES -outdir $OUTPUT_DIR -o $OUTPUT_WRAPPER_FILENAME SwigInterfaceFiles/RakNet.i
 if [ ! $? == 0 ]; then
 	echo "SWIG had an error while generating the C# wrappers/interfaces"
 	exit 3
@@ -137,7 +137,8 @@ if [ $BUILD_BZIP2 == 1 ]; then
 fi
 
 echo "Building the C# capable shared library"
-g++ *.cpp $OUTPUT_WRAPPER_FILENAME $GCC_ADDITIONAL_FILES $GCC_DEFINES -std=c++0x -fPIC -lpthread $GCC_ADDITIONAL_LIBS -I$SOURCE_DIR/include $GCC_ADDITIONAL_INCLUDES -shared -o $SO_NAME
+echo g++ *.cpp $OUTPUT_WRAPPER_FILENAME $GCC_ADDITIONAL_FILES $GCC_DEFINES -std=c++0x -fPIC -lpthread $GCC_ADDITIONAL_LIBS -I$SOURCE_DIR/include "-I/usr/lib/jvm/jdk1.8.0_271/include/linux/" "-I/usr/lib/jvm/jdk1.8.0_271/include/" $GCC_ADDITIONAL_INCLUDES -shared -o $SO_NAME
+g++ *.cpp $OUTPUT_WRAPPER_FILENAME $GCC_ADDITIONAL_FILES $GCC_DEFINES -std=c++0x -fPIC -lpthread $GCC_ADDITIONAL_LIBS -I$SOURCE_DIR/include "-I/usr/lib/jvm/jdk1.8.0_271/include/linux/" "-I/usr/lib/jvm/jdk1.8.0_271/include/" $GCC_ADDITIONAL_INCLUDES -shared -o $SO_NAME
 if [ ! $? == 0 ]; then
 	echo "There was an error building the shared library"
 	cd $OLD_DIR
@@ -145,13 +146,4 @@ if [ ! $? == 0 ]; then
 fi
 echo "Building the C# capable shared library succeeded"
 
-echo "Copying to /usr/lib/ requires root privileges; enter password"
-sudo cp ./$SO_NAME /usr/lib
-if [ ! $? == 0 ]; then
-	echo "$SO_NAME lib copy failed"
-	cd $OLD_DIR
-	exit 6
-fi
-
-echo "$SO_NAME lib copied"
 cd $OLD_DIR
