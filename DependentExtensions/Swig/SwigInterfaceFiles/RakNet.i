@@ -23,16 +23,49 @@
 #endif
 
 
-
+#define UNICODE
+%{
+#define UNICODE
+%}
 %include "various.i"
 %include "typemaps.i"
 %include "arrays_java.i"
 //%include "Utils.i"
+
+%typemap(jni) char *NIOBUFFER "jobject"  
+%typemap(jtype) char *NIOBUFFER "java.nio.ByteBuffer"  
+%typemap(jstype) char *NIOBUFFER "java.nio.ByteBuffer"  
+%typemap(javain,
+  pre="  assert $javainput.isDirect() : \"Buffer must be allocated direct.\";") char *NIOBUFFER "$javainput"
+%typemap(javaout) char *NIOBUFFER {  
+  return $jnicall;  
+}  
+%typemap(in) char *NIOBUFFER {  
+  $1 = (char *) JCALL1(GetDirectBufferAddress, jenv, $input); 
+  if ($1 == NULL) {  
+    SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of a java.nio.ByteBuffer direct byte buffer. Buffer must be a direct buffer and not a non-direct buffer.");  
+  }  
+}  
+%typemap(memberin) char *NIOBUFFER {  
+  if ($input) {  
+    $1 = $input;  
+  } else {  
+    $1 = 0;  
+  }  
+}  
+%typemap(freearg) char *NIOBUFFER ""  
+
 typedef unsigned int       uint32_t;
 namespace SLNet {
 
+    class Packet;
+		%typemap(out) unsigned char *NIOBUFFER { $result = JCALL2(NewDirectByteBuffer, jenv, $1, arg1->length); };
+		%apply unsigned char *NIOBUFFER { unsigned char *data };
+
+		
+		
 	class RakPeerInterface;
-		%apply char *BYTE { const char *data };
+		%apply char *NIOBUFFER { const char *data };
 		%apply uint32_t { int };
 	
 	

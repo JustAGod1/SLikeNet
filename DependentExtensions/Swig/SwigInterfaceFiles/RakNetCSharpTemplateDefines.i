@@ -12,6 +12,7 @@
 //---------------------------------Template Defines-------------------------
 //Swig needs to manually define templates you wish to use, this is done here.
 
+/*
 %template(Serialize) SLNet::BitStream::Serialize <bool>;
 %template(Serialize) SLNet::BitStream::Serialize <unsigned char>;
 %template(Serialize) SLNet::BitStream::Serialize <short>;
@@ -151,7 +152,7 @@
 %template(ReadCompressedDelta) SLNet::BitStream::ReadCompressedDelta <SLNet::RakString>;
 %template(ReadCompressedDelta) SLNet::BitStream::ReadCompressedDelta <RakNetGUID>;
 %template(ReadCompressedDelta) SLNet::BitStream::ReadCompressedDelta <uint24_t>;
-
+*/
 %define ADD_LIST_TYPE(CTYPE,CSTYPE,RENAME_TYPE)
 %typemap(javacode) DataStructures::List<CTYPE>
 %{

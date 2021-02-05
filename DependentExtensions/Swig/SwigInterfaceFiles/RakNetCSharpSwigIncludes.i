@@ -23,10 +23,12 @@
 %include "SimpleMutex.h"
 %include "NativeTypes.h"
 %include "SocketIncludes.h"
+%apply char *NIOBUFFER { char *dest };
 %include "types.h"
+%apply char * { char *dest };
 %include "string.h"
-%include "wstring.h"
-%include "BitStream.h"
+//%include "wstring.h"
+//%include "BitStream.h"
 %include "DS_List.h"
 %include "DS_ByteQueue.h"
 %include "socket.h"
